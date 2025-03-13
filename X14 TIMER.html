@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&display=swap" rel="stylesheet">
+  <style>
+    /* Professional Grey Theme */
+    .grey-timer {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      gap: 20px;
+      font-family: 'Syncopate', sans-serif;
+      font-size: 80px;
+      color: #333333; /* Professional Dark Grey */
+      text-align: center;
+    }
+
+    .grey-timer div {
+      transition: transform 0.3s ease;
+    }
+
+    .grey-timer div:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="grey-timer">
+    <div id="days">912</div>
+    <div id="hours">00</div>
+    <div id="minutes">00</div>
+    <div id="seconds">00</div>
+  </div>
+
+  <script>
+    // Countdown Logic for 2.5 Years (912 Days)
+    let days = 912;
+    let hours = 0;
+    let minutes = 0;
+    let seconds = 0;
+
+    const updateTimer = () => {
+      if (seconds > 0) {
+        seconds--;
+      } else {
+        if (minutes > 0) {
+          minutes--;
+          seconds = 59;
+        } else {
+          if (hours > 0) {
+            hours--;
+            minutes = 59;
+            seconds = 59;
+          } else {
+            if (days > 0) {
+              days--;
+              hours = 23;
+              minutes = 59;
+              seconds = 59;
+            }
+          }
+        }
+      }
+
+      // Update the DOM
+      document.getElementById('days').textContent = String(days).padStart(3, '0');
+      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    };
+
+    setInterval(updateTimer, 1000); // Update every second
+    updateTimer(); // Initial call
+  </script>
+</body>
+</html>
